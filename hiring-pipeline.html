@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -10,20 +11,43 @@
     <link rel="stylesheet" href="style.css">
     <style>
         /* --- HIGH GRAPHIC VERTICAL GRID ALIGNMENT OVERRIDES --- */
-        .grid-layout-th, .grid-layout-td {
+        .grid-layout-th,
+        .grid-layout-td {
             padding: 14px 16px;
             text-align: left;
             vertical-align: middle;
         }
-        
+
         /* Strict column width constraints to enforce perfect vertical lines */
-        .col-name { width: 18%; }
-        .col-dept { width: 14%; }
-        .col-invited { width: 12%; }
-        .col-completed { width: 12%; }
-        .col-status { width: 16%; }
-        .col-action { width: 14%; text-align: left; }
-        .col-remarks { width: 14%; text-align: right; }
+        .col-name {
+            width: 18%;
+        }
+
+        .col-dept {
+            width: 14%;
+        }
+
+        .col-invited {
+            width: 12%;
+        }
+
+        .col-completed {
+            width: 12%;
+        }
+
+        .col-status {
+            width: 16%;
+        }
+
+        .col-action {
+            width: 14%;
+            text-align: left;
+        }
+
+        .col-remarks {
+            width: 14%;
+            text-align: right;
+        }
 
         .candidate-table td strong {
             display: block;
@@ -50,10 +74,28 @@
             text-align: center;
             white-space: nowrap;
         }
-        .stage-tag.screening { background-color: #f1f5f9; color: #475569; }
-        .stage-tag.offered { background-color: #dcfce7; color: #15803d; }
-        .stage-tag.rejected { background-color: #fee2e2; color: #b91c1c; }
-        .stage-tag.cancelled { background-color: #ffedd5; color: #c2410c; } /* Crisp orange layout fix for clear tracking bounds */
+
+        .stage-tag.screening {
+            background-color: #f1f5f9;
+            color: #475569;
+        }
+
+        .stage-tag.offered {
+            background-color: #dcfce7;
+            color: #15803d;
+        }
+
+        .stage-tag.rejected {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .stage-tag.cancelled {
+            background-color: #ffedd5;
+            color: #c2410c;
+        }
+
+        /* Crisp orange layout fix for clear tracking bounds */
 
         /* --- IMMUTABLE STABLE ASPECT-RATIO VIDEO VIEWPORT --- */
         .locked-video-viewport {
@@ -81,6 +123,7 @@
             pointer-events: none;
             transition: opacity 0.15s ease;
         }
+
         .recording-popup-backdrop.active {
             opacity: 1;
             pointer-events: auto;
@@ -102,20 +145,21 @@
             box-sizing: border-box;
         }
 
-        .modal-left-media { 
-            background: #0f141c; 
-            display: flex; 
-            flex-direction: column; 
-            padding: 18px; 
+        .modal-left-media {
+            background: #0f141c;
+            display: flex;
+            flex-direction: column;
+            padding: 18px;
             box-sizing: border-box;
             justify-content: space-between;
         }
-        .modal-right-data { 
-            background: #ffffff; 
-            display: flex; 
-            flex-direction: column; 
-            padding: 20px; 
-            min-width: 0; 
+
+        .modal-right-data {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            min-width: 0;
             border-left: 1px solid #e2e8f0;
             box-sizing: border-box;
         }
@@ -128,6 +172,7 @@
             margin-top: 14px;
             flex-shrink: 0;
         }
+
         .modal-q-node {
             background: #1e293b;
             color: #cbd5e1;
@@ -140,17 +185,26 @@
             cursor: pointer;
             transition: all 0.1s ease;
         }
-        .modal-q-node:hover { background: #334155; color: #fff; }
-        .modal-q-node.active-q { background: #7c3aed; color: #fff; border-color: #6d28d9; }
 
-        .box-scroll-transcript { 
-            background: #f8fafc; 
-            border: 1px solid #e2e8f0; 
-            border-radius: 6px; 
-            flex-grow: 1; 
-            overflow-y: auto; 
-            padding: 12px; 
-            font-size: 12.5px; 
+        .modal-q-node:hover {
+            background: #334155;
+            color: #fff;
+        }
+
+        .modal-q-node.active-q {
+            background: #7c3aed;
+            color: #fff;
+            border-color: #6d28d9;
+        }
+
+        .box-scroll-transcript {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 12px;
+            font-size: 12.5px;
             line-height: 1.5;
             margin-top: 12px;
         }
@@ -164,6 +218,7 @@
             padding: 20px;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
         }
+
         .remarks-textarea-modal {
             width: 100%;
             height: 130px;
@@ -179,6 +234,7 @@
             margin-bottom: 14px;
             transition: all 0.12s ease;
         }
+
         .remarks-textarea-modal:focus {
             background: #ffffff;
             border-color: #2563eb;
@@ -186,11 +242,14 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- SIDEBAR MENU -->
     <nav class="sidebar">
-        <div class="sidebar-header"><h1 class="sidebar-brand">ElastiCrew</h1></div>
+        <div class="sidebar-header">
+            <h1 class="sidebar-brand">ElastiCrew</h1>
+        </div>
         <ul class="nav-menu">
             <li class="nav-menu-item active"><a href="hiring-pipeline.html?v=3"><span>Hiring Pipeline</span></a></li>
             <li class="nav-menu-item"><a href="all-candidates.html?v=3"><span>All Candidates</span></a></li>
@@ -204,146 +263,233 @@
     </nav>
 
     <!-- MAIN FRAME CONTENT AREA -->
-    <main class="main-content">
-        <header class="header-actions">
-            <h1 class="page-title">Video Bot AI Screening</h1>
+    <main class="main-content" style="padding: 24px 40px !important;">
+        <div style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.8px;">Pipeline Stages</div>
+        <div class="sub-nav-container" style="margin-bottom: 20px;">
+            <a href="hiring-pipeline.html?v=3" class="sub-nav-tab active text-decoration-none">
+                <svg class="tab-icon icon-purple" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 7l-7 5 7 5V7z"></path>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <span>Video Screening</span>
+            </a>
+            <a href="#" class="sub-nav-tab text-decoration-none">
+                <svg class="tab-icon icon-blue-alt" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                </svg>
+                <span>MCQ Assessment</span>
+            </a>
+            <a href="tech-scheduler.html?v=3" class="sub-nav-tab text-decoration-none">
+                <svg class="tab-icon icon-green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                </svg>
+                <span>Tech Scheduler</span>
+            </a>
+            <a href="#" class="sub-nav-tab text-decoration-none">
+                <svg class="tab-icon icon-amber" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>HR Interview</span>
+            </a>
+        </div>
+
+        <header class="header-actions" style="margin-bottom: 16px;">
+            <div>
+                <h1 class="page-title">Video Screening</h1>
+                <p style="color: #64748b; font-size: 14px; margin-top: 6px;">Review candidate screening results and move qualified candidates forward.</p>
+            </div>
+            <div style="display:flex; gap: 12px; align-items: center;">
+                <button class="btn-secondary">Export CSV</button>
+                <button class="btn-secondary">Bulk Actions</button>
+                <button class="btn-secondary">Refresh</button>
+            </div>
         </header>
 
+        <!-- Action-Oriented KPI Panel -->
+        <section class="kpi-panel-container" style="margin-bottom: 20px;">
+            <div class="kpi-card warning">
+                <div class="kpi-label">Pending Review</div>
+                <div class="kpi-count">12</div>
+            </div>
+            <div class="kpi-card success">
+                <div class="kpi-label">Ready For Assessment</div>
+                <div class="kpi-count">5</div>
+            </div>
+            <div class="kpi-card danger">
+                <div class="kpi-label">Review Overdue</div>
+                <div class="kpi-count">3</div>
+            </div>
+            <div class="kpi-card neutral" style="border-left-color: #64748b;">
+                <div class="kpi-label">Expired Screenings</div>
+                <div class="kpi-count">2</div>
+            </div>
+        </section>
+
+        <!-- Pipeline Stages Label -->
+        
+
+        <!-- Enterprise Filter Bar -->
+        <section class="enterprise-filter-bar" style="margin-bottom: 20px; display:flex; gap:12px; align-items:center;">
+            <select class="filter-select" style="min-width: 150px; padding: 8px 12px; font-size: 13px; border-radius: 6px; border: 1px solid #cbd5e1;">
+                <option>All Departments</option>
+                <option>Engineering</option>
+                <option>Product</option>
+            </select>
+            <select class="filter-select" style="min-width: 150px; padding: 8px 12px; font-size: 13px; border-radius: 6px; border: 1px solid #cbd5e1;">
+                <option>All Recruiters</option>
+                <option>Priya Sharma</option>
+                <option>Ravi Patel</option>
+            </select>
+            <select class="filter-select" style="min-width: 150px; padding: 8px 12px; font-size: 13px; border-radius: 6px; border: 1px solid #cbd5e1;">
+                <option>All Statuses</option>
+                <option>Pending Review</option>
+                <option>Review Completed</option>
+                <option>On Hold</option>
+                <option>Rejected</option>
+            </select>
+            <input type="date" class="filter-select" style="min-width: 150px; padding: 8px 12px; font-size: 13px; border-radius: 6px; border: 1px solid #cbd5e1; color:#64748b;" title="Start Date">
+            <input type="date" class="filter-select" style="min-width: 150px; padding: 8px 12px; font-size: 13px; border-radius: 6px; border: 1px solid #cbd5e1; color:#64748b;" title="End Date">
+            <button class="add-filter-btn" style="padding: 8px 16px; border-color: var(--primary-blue); background: var(--primary-blue); color: #fff;">Apply Filters</button>
+        </section>
+
+        <!-- Enterprise Data Grid -->
         <section class="candidates-section">
-            <!-- FILTER AND SEARCH BAR SYSTEM -->
-            <div class="filter-bar">
-                <div class="search-box">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                    <input type="text" id="searchName" placeholder="Search candidates by name...">
-                </div>
-                <div class="filter-group">
-                    <select id="filterDept" class="filter-select">
-                        <option value="all">All Departments</option>
-                        <option value="Engineering">Engineering</option>
-                        <option value="Product">Product</option>
-                        <option value="Design">Design</option>
-                    </select>
-                    <select id="filterSubDept" class="filter-select">
-                        <option value="all">All Sub Departments</option>
-                        <option value="Frontend">Frontend</option>
-                        <option value="Backend">Backend</option>
-                        <option value="Full Stack">Full Stack</option>
-                        <option value="QA / Testing">QA / Testing</option>
-                        <option value="UI/UX">UI/UX</option>
-                    </select>
-                    <select id="filterStatus" class="filter-select">
-                        <option value="all">All Bot Screening Status</option>
-                        <option value="Completed">Completed</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Expired">Link Expired</option>
-                        <option value="Cancelled">Could not complete</option>
-                    </select>
-                </div>
-            </div>
+            <div class="table-responsive-wrapper">
+                <table class="candidate-table enterprise-table" style="table-layout: fixed; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px; text-align: center;"><input type="checkbox"></th>
+                            <th style="width: 20%;">Candidate</th>
+                            <th style="width: 14%;">Role</th>
+                            <th style="width: 12%;">Stage</th>
+                            <th style="width: 14%;">Submitted On</th>
+                            <th style="width: 14%;">Review Status</th>
+                            <th style="width: 14%;">Next Action</th>
+                            <th style="width: 12%; text-align: right; padding-right: 20px;">Actions</th>
+                        </tr>
+                    </thead>
+                    
+                    <!-- Row 1 -->
+                    <tbody class="candidate-row-group">
+                        <tr class="enterprise-row">
+                            <td style="text-align: center; vertical-align: middle;"><input type="checkbox"></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar-circle">AT</div>
+                                    <div><strong>Alan Turing</strong></div>
+                                </div>
+                            </td>
+                            <td>Backend Eng</td>
+                            <td>Video Screen</td>
+                            <td><div class="timestamp-txt" style="color:#1e293b;">08 Jun 2026</div></td>
+                            <td><span class="status-badge pending">Pending Review</span></td>
+                            <td><strong style="color:var(--primary-blue);">Review Screening</strong></td>
+                            <td style="text-align: right; padding-right: 20px;">
+                                <div style="display: flex; justify-content: flex-end; gap: 6px;">
+                                    <button class="btn-primary-action">Review Candidate</button>
+                                    <button class="btn-primary-action" style="padding: 6px 10px; color: #64748b; background:#f1f5f9;">&#8942;</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
 
-            <div class="sub-nav-container">
-                
-                <a href="hiring-pipeline.html?v=3" class="sub-nav-tab active text-decoration-none">
-                    <svg class="tab-icon icon-purple" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                    <span>Video Bot Screening</span>
-                    <span class="count-pill" id="totalCountBubble">4</span>
-                </a>
-                <a href="#" class="sub-nav-tab text-decoration-none">
-                    <svg class="tab-icon icon-blue-alt" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
-                    <span>MCQ Assessment</span>
-                </a>
-                <a href="tech-scheduler.html?v=3" class="sub-nav-tab text-decoration-none">
-                    <svg class="tab-icon icon-green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect></svg>
-                    <span>Tech Scheduler</span>
-                </a>
-                <a href="#" class="sub-nav-tab text-decoration-none">
-                    <svg class="tab-icon icon-amber" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                    <span>HR Interview</span>
-                </a>
-            </div>
+                    <!-- Row 2 -->
+                    <tbody class="candidate-row-group">
+                        <tr class="enterprise-row">
+                            <td style="text-align: center; vertical-align: middle;"><input type="checkbox"></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar-circle">GH</div>
+                                    <div><strong>Grace Hopper</strong></div>
+                                </div>
+                            </td>
+                            <td>Full Stack</td>
+                            <td>Video Screen</td>
+                            <td><div class="timestamp-txt" style="color:#1e293b;">07 Jun 2026</div></td>
+                            <td><span class="status-badge success">Review Completed</span></td>
+                            <td><strong style="color:var(--primary-blue);">Move To Assessment</strong></td>
+                            <td style="text-align: right; padding-right: 20px;">
+                                <div style="display: flex; justify-content: flex-end; gap: 6px;">
+                                    <button class="btn-primary-action">Move Forward</button>
+                                    <button class="btn-primary-action" style="padding: 6px 10px; color: #64748b; background:#f1f5f9;">&#8942;</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    
+                    <!-- Row 3 (Hold Example) -->
+                    <tbody class="candidate-row-group">
+                        <tr class="enterprise-row">
+                            <td style="text-align: center; vertical-align: middle;"><input type="checkbox"></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar-circle">CB</div>
+                                    <div><strong>Charles Babbage</strong></div>
+                                </div>
+                            </td>
+                            <td>Hardware Eng</td>
+                            <td>Video Screen</td>
+                            <td><div class="timestamp-txt" style="color:#1e293b;">05 Jun 2026</div></td>
+                            <td><span class="status-badge neutral" style="background:#f1f5f9; color:#475569; border: 1px solid #cbd5e1;">On Hold</span></td>
+                            <td><strong style="color:#475569;">Place On Hold</strong></td>
+                            <td style="text-align: right; padding-right: 20px;">
+                                <div style="display: flex; justify-content: flex-end; gap: 6px;">
+                                    <button class="btn-primary-action" style="color:#475569;">Manage Hold</button>
+                                    <button class="btn-primary-action" style="padding: 6px 10px; color: #64748b; background:#f1f5f9;">&#8942;</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
 
-            <!-- PIPELINE DATA GRID -->
-            <table class="candidate-table" id="screeningTable" style="table-layout: fixed; width: 100%;">
-                <thead>
-                    <tr>
-                        <th class="grid-layout-th col-name">Candidate Name</th>
-                        <th class="grid-layout-th col-dept">Sub Dept</th>
-                        <th class="grid-layout-th col-invited">Date Invited</th>
-                        <th class="grid-layout-th col-completed">Date Completed</th>
-                        <th class="grid-layout-th col-status">Screening Status</th>
-                        <th class="grid-layout-th col-action">Action</th>
-                        <th class="grid-layout-th col-remarks" style="padding-right: 24px;">Admin Notes</th>
-                    </tr>
-                </thead>
-                <tbody id="candidateListBody">
-                    <tr class="candidate-row" data-name="Alan Turing" data-dept="Engineering" data-subdept="Backend" data-status="Pending" data-remarks="">
-                        <td class="grid-layout-td col-name"><strong>Alan Turing</strong></td>
-                        <td class="grid-layout-td col-dept">Backend</td>
-                        <td class="grid-layout-td col-invited"><span class="timestamp-txt">01 Jun 26</span></td>
-                        <td class="grid-layout-td col-completed"><span class="timestamp-txt">—</span></td>
-                        <td class="grid-layout-td col-status"><span class="stage-tag screening">Pending</span></td>
-                        <td class="grid-layout-td col-action">
-                            <select class="action-dropdown" onchange="handleAction(this)">
-                                <option value="" disabled selected>Manage</option>
-                                <option value="reshare">Reshare Link</option>
-                                <option value="delete" class="danger-option">Delete</option>
-                            </select>
-                        </td>
-                        <td class="grid-layout-td col-remarks" style="padding-right: 24px;">
-                            <button class="btn-secondary" style="padding: 4px 10px; font-size: 11px; color:#475569; border-color:#cbd5e1;" onclick="triggerRemarksModal('Alan Turing')">View/Edit Notes</button>
-                        </td>
-                    </tr>
-                    <tr class="candidate-row" data-name="Grace Hopper" data-dept="Engineering" data-subdept="Full Stack" data-status="Completed" data-remarks="Strong vocabulary index, clear structural responses across text sync pools.">
-                        <td class="grid-layout-td col-name"><strong>Grace Hopper</strong></td>
-                        <td class="grid-layout-td col-dept">Full Stack</td>
-                        <td class="grid-layout-td col-invited"><span class="timestamp-txt">28 May 26</span></td>
-                        <td class="grid-layout-td col-completed"><span class="timestamp-txt">30 May 26</span></td>
-                        <td class="grid-layout-td col-status"><span class="stage-tag offered">Completed</span></td>
-                        <td class="grid-layout-td col-action">
-                            <button class="btn-submit" style="background:#7c3aed; padding: 4px 8px; font-size:11px;" onclick="launchRecordingPlayerModal('Grace Hopper')">View Recording</button>
-                        </td>
-                        <td class="grid-layout-td col-remarks" style="padding-right: 24px;">
-                            <button class="btn-secondary" style="padding: 4px 10px; font-size: 11px; color:#475569; border-color:#cbd5e1;" onclick="triggerRemarksModal('Grace Hopper')">View/Edit Notes</button>
-                        </td>
-                    </tr>
-                    <tr class="candidate-row" data-name="Ada Lovelace" data-dept="Engineering" data-subdept="Frontend" data-status="Expired" data-remarks="">
-                        <td class="grid-layout-td col-name"><strong>Ada Lovelace</strong></td>
-                        <td class="grid-layout-td col-dept">Frontend</td>
-                        <td class="grid-layout-td col-invited"><span class="timestamp-txt">15 May 26</span></td>
-                        <td class="grid-layout-td col-completed"><span class="timestamp-txt">—</span></td>
-                        <td class="grid-layout-td col-status"><span class="stage-tag rejected">Link Expired</span></td>
-                        <td class="grid-layout-td col-action">
-                            <select class="action-dropdown" onchange="handleAction(this)">
-                                <option value="" disabled selected>Manage</option>
-                                <option value="reshare">Reshare Link</option>
-                                <option value="delete" class="danger-option">Delete</option>
-                            </select>
-                        </td>
-                        <td class="grid-layout-td col-remarks" style="padding-right: 24px;">
-                            <button class="btn-secondary" style="padding: 4px 10px; font-size: 11px; color:#475569; border-color:#cbd5e1;" onclick="triggerRemarksModal('Ada Lovelace')">View/Edit Notes</button>
-                        </td>
-                    </tr>
-                    <tr class="candidate-row" data-name="Linus Torvalds" data-dept="Engineering" data-subdept="Backend" data-status="Cancelled" data-remarks="">
-                        <td class="grid-layout-td col-name"><strong>Linus Torvalds</strong></td>
-                        <td class="grid-layout-td col-dept">Backend</td>
-                        <td class="grid-layout-td col-invited"><span class="timestamp-txt">20 May 26</span></td>
-                        <td class="grid-layout-td col-completed"><span class="timestamp-txt">—</span></td>
-                        <!-- FIXED: Swapped out broken template notation to native balanced "cancelled" styling hook -->
-                        <td class="grid-layout-td col-status"><span class="stage-tag cancelled">Could not complete</span></td>
-                        <td class="grid-layout-td col-action">
-                            <select class="action-dropdown" onchange="handleAction(this)">
-                                <option value="" disabled selected>Manage</option>
-                                <option value="reshare">Reshare Link</option>
-                                <option value="delete" class="danger-option">Delete</option>
-                            </select>
-                        </td>
-                        <td class="grid-layout-td col-remarks" style="padding-right: 24px;">
-                            <button class="btn-secondary" style="padding: 4px 10px; font-size: 11px; color:#475569; border-color:#cbd5e1;" onclick="triggerRemarksModal('Linus Torvalds')">View/Edit Notes</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div id="noResults" class="empty-state" style="display: none;">No screening profiles match your active filters.</div>
+                    <!-- Row 4 -->
+                    <tbody class="candidate-row-group">
+                        <tr class="enterprise-row">
+                            <td style="text-align: center; vertical-align: middle;"><input type="checkbox"></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar-circle">AL</div>
+                                    <div><strong>Ada Lovelace</strong></div>
+                                </div>
+                            </td>
+                            <td>Frontend Eng</td>
+                            <td>Video Screen</td>
+                            <td><div class="timestamp-txt" style="color:#64748b;">Not Submitted</div></td>
+                            <td><span class="status-badge danger" style="background:#fee2e2; color:#b91c1c;">Screening Expired</span></td>
+                            <td><strong style="color:#b91c1c;">Send Reminder</strong></td>
+                            <td style="text-align: right; padding-right: 20px;">
+                                <div style="display: flex; justify-content: flex-end; gap: 6px;">
+                                    <button class="btn-primary-action">Send Reminder</button>
+                                    <button class="btn-primary-action" style="padding: 6px 10px; color: #64748b; background:#f1f5f9;">&#8942;</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    
+                    <!-- Row 5 (Reject Example) -->
+                    <tbody class="candidate-row-group">
+                        <tr class="enterprise-row">
+                            <td style="text-align: center; vertical-align: middle;"><input type="checkbox"></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar-circle">LT</div>
+                                    <div><strong>Linus Torvalds</strong></div>
+                                </div>
+                            </td>
+                            <td>Backend Eng</td>
+                            <td>Video Screen</td>
+                            <td><div class="timestamp-txt" style="color:#1e293b;">01 Jun 2026</div></td>
+                            <td><span class="status-badge danger" style="background:#fee2e2; color:#b91c1c;">Review Completed</span></td>
+                            <td><strong style="color:#b91c1c;">Reject Candidate</strong></td>
+                            <td style="text-align: right; padding-right: 20px;">
+                                <div style="display: flex; justify-content: flex-end; gap: 6px;">
+                                    <button class="btn-primary-action" style="color:#b91c1c; border-color:#fca5a5;">Reject</button>
+                                    <button class="btn-primary-action" style="padding: 6px 10px; color: #64748b; background:#f1f5f9;">&#8942;</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
@@ -362,24 +508,29 @@
                 </div>
                 <div class="form-group">
                     <label>Subject</label>
-                    <input type="text" id="emailSubject" class="form-control" value="New Invitation: Complete your Video AI Screening with ElastiCrew" required>
+                    <input type="text" id="emailSubject" class="form-control"
+                        value="New Invitation: Complete your Video Screening with ElastiCrew" required>
                 </div>
                 <div class="form-group">
                     <label>Email Message Body</label>
-                    <textarea id="emailBody" class="form-control textarea-body" rows="5" style="resize:none;" required></textarea>
+                    <textarea id="emailBody" class="form-control textarea-body" rows="5" style="resize:none;"
+                        required></textarea>
                 </div>
                 <div class="modal-actions" style="display:flex; justify-content:flex-end; gap:8px;">
-                    <button type="button" class="btn-secondary" id="closeEmailModalBtn" style="padding:6px 12px; font-size:12px;">Cancel</button>
-                    <button type="submit" class="btn-submit dispatch-btn" style="padding:6px 12px; font-size:12px;">Reshare Link</button>
+                    <button type="button" class="btn-secondary" id="closeEmailModalBtn"
+                        style="padding:6px 12px; font-size:12px;">Cancel</button>
+                    <button type="submit" class="btn-submit dispatch-btn"
+                        style="padding:6px 12px; font-size:12px;">Reshare Link</button>
                 </div>
             </form>
         </div>
     </div>
 
     <!-- --- CONSTRAINED WORKSPACE TERMINAL BACKDROP (60% VIEWPORT COVERAGE) --- -->
-    <div class="recording-popup-backdrop" id="recordingPlayerModal" onclick="closePopupOnBackdrop(event, 'recordingPlayerModal')">
+    <div class="recording-popup-backdrop" id="recordingPlayerModal"
+        onclick="closePopupOnBackdrop(event, 'recordingPlayerModal')">
         <div class="premium-60-modal">
-            
+
             <!-- Left Side Panel: Media Box Streaming -->
             <div class="modal-left-media">
                 <div style="flex-grow:1; display:flex; align-items:center; justify-content:center; min-height:0;">
@@ -387,17 +538,25 @@
                         <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
                     </video>
                 </div>
-                
+
                 <!-- Flat Numeric Question Navigation Strip -->
                 <div class="modal-q-nav-strip">
-                    <div class="modal-q-node active-q" onclick="jumpToTargetQuestionIndex(1, 'https://www.w3schools.com/html/mov_bbb.mp4')">Q1</div>
-                    <div class="modal-q-node" onclick="jumpToTargetQuestionIndex(2, 'https://www.w3schools.com/html/movie.mp4')">Q2</div>
-                    <div class="modal-q-node" onclick="jumpToTargetQuestionIndex(3, 'https://www.w3schools.com/html/mov_bbb.mp4')">Q3</div>
-                    <div class="modal-q-node" onclick="jumpToTargetQuestionIndex(4, 'https://www.w3schools.com/html/movie.mp4')">Q4</div>
-                    <div class="modal-q-node" onclick="jumpToTargetQuestionIndex(5, 'https://www.w3schools.com/html/mov_bbb.mp4')">Q5</div>
-                    <div class="modal-q-node" onclick="jumpToTargetQuestionIndex(6, 'https://www.w3schools.com/html/movie.mp4')">Q6</div>
-                    <div class="modal-q-node" onclick="jumpToTargetQuestionIndex(7, 'https://www.w3schools.com/html/mov_bbb.mp4')">Q7</div>
-                    <div class="modal-q-node" onclick="jumpToTargetQuestionIndex(8, 'https://www.w3schools.com/html/movie.mp4')">Q8</div>
+                    <div class="modal-q-node active-q"
+                        onclick="jumpToTargetQuestionIndex(1, 'https://www.w3schools.com/html/mov_bbb.mp4')">Q1</div>
+                    <div class="modal-q-node"
+                        onclick="jumpToTargetQuestionIndex(2, 'https://www.w3schools.com/html/movie.mp4')">Q2</div>
+                    <div class="modal-q-node"
+                        onclick="jumpToTargetQuestionIndex(3, 'https://www.w3schools.com/html/mov_bbb.mp4')">Q3</div>
+                    <div class="modal-q-node"
+                        onclick="jumpToTargetQuestionIndex(4, 'https://www.w3schools.com/html/movie.mp4')">Q4</div>
+                    <div class="modal-q-node"
+                        onclick="jumpToTargetQuestionIndex(5, 'https://www.w3schools.com/html/mov_bbb.mp4')">Q5</div>
+                    <div class="modal-q-node"
+                        onclick="jumpToTargetQuestionIndex(6, 'https://www.w3schools.com/html/movie.mp4')">Q6</div>
+                    <div class="modal-q-node"
+                        onclick="jumpToTargetQuestionIndex(7, 'https://www.w3schools.com/html/mov_bbb.mp4')">Q7</div>
+                    <div class="modal-q-node"
+                        onclick="jumpToTargetQuestionIndex(8, 'https://www.w3schools.com/html/movie.mp4')">Q8</div>
                 </div>
             </div>
 
@@ -405,18 +564,30 @@
             <div class="modal-right-data">
                 <div class="flex-between" style="border-bottom:1px solid #e2e8f0; padding-bottom:8px; flex-shrink:0;">
                     <div>
-                        <h3 id="modalCandidateLabel" style="font-size:14px; font-weight:800; color:#0f172a; margin:0;">Grace Hopper</h3>
-                        <p id="modalActiveQuestionLabel" style="font-size:11px; color:#64748b; margin:2px 0 0 0; font-weight:600;">Question 1 Active</p>
+                        <h3 id="modalCandidateLabel" style="font-size:14px; font-weight:800; color:#0f172a; margin:0;">
+                            Grace Hopper</h3>
+                        <p id="modalActiveQuestionLabel"
+                            style="font-size:11px; color:#64748b; margin:2px 0 0 0; font-weight:600;">Question 1 Active
+                        </p>
                     </div>
-                    <button style="background:none; border:none; font-size:22px; cursor:pointer; color:#94a3b8; line-height:1;" onclick="toggleRecordingModal()">&times;</button>
+                    <button
+                        style="background:none; border:none; font-size:22px; cursor:pointer; color:#94a3b8; line-height:1;"
+                        onclick="toggleRecordingModal()">&times;</button>
                 </div>
-                
+
                 <div class="box-scroll-transcript" id="modalTranscriptBox">
-                    <p style="margin:0 0 6px 0; color:#1e3a8a; font-weight:700; font-size:11.5px; text-transform:uppercase;">Question Prompt:</p>
-                    <p id="modalQuestionTextElement" style="font-style:italic; margin:0 0 14px 0; color:#475569;">"Walk us through your experience building decoupled microservices architectures..."</p>
+                    <p
+                        style="margin:0 0 6px 0; color:#1e3a8a; font-weight:700; font-size:11.5px; text-transform:uppercase;">
+                        Question Prompt:</p>
+                    <p id="modalQuestionTextElement" style="font-style:italic; margin:0 0 14px 0; color:#475569;">"Walk
+                        us through your experience building decoupled microservices architectures..."</p>
                     <hr style="border:none; border-top:1px solid #f1f5f9; margin-bottom:12px;">
-                    <p style="margin:0 0 6px 0; color:#10b981; font-weight:700; font-size:11.5px; text-transform:uppercase;">Response Transcript:</p>
-                    <p id="modalAnswerTextElement" style="color:#1e293b; margin:0;">"I leverage decoupled container configurations routed natively over proxy handlers to distribute cross-origin data loads securely without bottleneck lags..."</p>
+                    <p
+                        style="margin:0 0 6px 0; color:#10b981; font-weight:700; font-size:11.5px; text-transform:uppercase;">
+                        Response Transcript:</p>
+                    <p id="modalAnswerTextElement" style="color:#1e293b; margin:0;">"I leverage decoupled container
+                        configurations routed natively over proxy handlers to distribute cross-origin data loads
+                        securely without bottleneck lags..."</p>
                 </div>
             </div>
 
@@ -424,18 +595,27 @@
     </div>
 
     <!-- --- POPUP OVERLAY C: CONSTRAINED ADMINISTRATIVE REMARKS MODAL LAYER --- -->
-    <div class="recording-popup-backdrop" id="remarksModalOverlay" onclick="closePopupOnBackdrop(event, 'remarksModalOverlay')">
+    <div class="recording-popup-backdrop" id="remarksModalOverlay"
+        onclick="closePopupOnBackdrop(event, 'remarksModalOverlay')">
         <div class="modal-card remarks-popup-card">
-            <div class="flex-between" style="border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
-                <h3 style="font-size:14px; font-weight:700; color:#0f172a; margin:0;" id="remarksModalHeaderTitle">Administrative Remarks</h3>
-                <button style="background:none; border:none; font-size:20px; cursor:pointer; color:#94a3b8; line-height:1;" onclick="closeRemarksModal()">&times;</button>
+            <div class="flex-between"
+                style="border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
+                <h3 style="font-size:14px; font-weight:700; color:#0f172a; margin:0;" id="remarksModalHeaderTitle">
+                    Administrative Remarks</h3>
+                <button
+                    style="background:none; border:none; font-size:20px; cursor:pointer; color:#94a3b8; line-height:1;"
+                    onclick="closeRemarksModal()">&times;</button>
             </div>
-            
-            <textarea id="modalRemarksTextarea" class="remarks-textarea-modal" placeholder="Type diagnostic notes or screening feedback here..."></textarea>
-            
+
+            <textarea id="modalRemarksTextarea" class="remarks-textarea-modal"
+                placeholder="Type diagnostic notes or screening feedback here..."></textarea>
+
             <div style="display:flex; justify-content:flex-end; gap:8px;">
-                <button class="btn-secondary" style="padding:6px 12px; font-size:12px;" onclick="closeRemarksModal()">Cancel</button>
-                <button class="btn-submit" style="background-color: var(--primary-blue); padding:6px 12px; font-size:12px;" onclick="saveRemarksModalPayload()">Save & Close</button>
+                <button class="btn-secondary" style="padding:6px 12px; font-size:12px;"
+                    onclick="closeRemarksModal()">Cancel</button>
+                <button class="btn-submit"
+                    style="background-color: var(--primary-blue); padding:6px 12px; font-size:12px;"
+                    onclick="saveRemarksModalPayload()">Save & Close</button>
             </div>
         </div>
     </div>
@@ -490,7 +670,7 @@
 
         function toggleRecordingModal() {
             recordingPlayerModal.classList.toggle('active');
-            if(!recordingPlayerModal.classList.contains('active')) {
+            if (!recordingPlayerModal.classList.contains('active')) {
                 modalMainVideoBox.pause();
                 modalMainVideoBox.src = "";
             }
@@ -498,20 +678,20 @@
 
         function closePopupOnBackdrop(e, modalId) {
             if (e.target === document.getElementById(modalId)) {
-                if(modalId === 'recordingPlayerModal') toggleRecordingModal();
-                if(modalId === 'remarksModalOverlay') closeRemarksModal();
+                if (modalId === 'recordingPlayerModal') toggleRecordingModal();
+                if (modalId === 'remarksModalOverlay') closeRemarksModal();
             }
         }
 
         function triggerRemarksModal(candidateName) {
             const rows = document.getElementsByClassName('candidate-row');
-            for(let row of rows) {
-                if(row.getAttribute('data-name') === candidateName) {
+            for (let row of rows) {
+                if (row.getAttribute('data-name') === candidateName) {
                     activeRowRef = row;
                     break;
                 }
             }
-            if(activeRowRef) {
+            if (activeRowRef) {
                 remarksModalHeaderTitle.innerText = `Admin Notes: ${candidateName}`;
                 modalRemarksTextarea.value = activeRowRef.getAttribute('data-remarks') || "";
                 remarksModalOverlay.classList.add('active');
@@ -524,7 +704,7 @@
         }
 
         function saveRemarksModalPayload() {
-            if(activeRowRef) {
+            if (activeRowRef) {
                 activeRowRef.setAttribute('data-remarks', modalRemarksTextarea.value.trim());
                 closeRemarksModal();
             }
@@ -538,22 +718,22 @@
 
         function jumpToTargetQuestionIndex(qIndex, videoSrcUrl) {
             document.querySelectorAll('.modal-q-node').forEach(node => node.classList.remove('active-q'));
-            
+
             const e = window.event || (arguments.callee.caller ? arguments.callee.caller.arguments[0] : null);
             if (e && e.currentTarget) {
                 e.currentTarget.classList.add('active-q');
             } else {
                 const nodes = document.querySelectorAll('.modal-q-node');
-                if(nodes[qIndex - 1]) nodes[qIndex - 1].classList.add('active-q');
+                if (nodes[qIndex - 1]) nodes[qIndex - 1].classList.add('active-q');
             }
 
             modalActiveQuestionLabel.innerText = `Question ${qIndex} Active`;
             modalMainVideoBox.src = videoSrcUrl;
-            
+
             const data = qaScriptMatrix[qIndex];
             modalQuestionTextElement.innerText = `"${data.q}"`;
             modalAnswerTextElement.innerText = `"${data.a}"`;
-            
+
             modalMainVideoBox.play();
         }
 
@@ -562,7 +742,7 @@
             const deptValue = filterDept.value;
             const subDeptValue = filterSubDept.value;
             const statusValue = filterStatus.value;
-            
+
             const rows = candidateListBody.getElementsByClassName('candidate-row');
             let visibleCount = 0;
 
@@ -607,7 +787,7 @@
                     filterScreeningList();
                 }
                 dropdown.value = "";
-            } 
+            }
             else if (selectedAction === 'reshare') {
                 activeRowRef = row;
                 const parsedEmail = `${candidateName.toLowerCase().replace(/\s+/g, '.')}@example.com`;
@@ -618,18 +798,18 @@
                 if (currentStatus === 'Completed') contextNote = "re-take the screening to log a brand new evaluation metric scorecard";
 
                 emailBodyTextArea.value = `Hi ${candidateName},\n\nWe have generated a brand new secure access token for you to ${contextNote}.\n\nPlease access the connection hub terminal using the link below at your earliest convenience to log your screening profile data.\n\nBest regards,\nElastiCrew Talent Team`;
-                
+
                 toggleEmailModal(true);
                 dropdown.value = "";
             }
         }
 
-        emailInviteForm.addEventListener('submit', function(e) {
+        emailInviteForm.addEventListener('submit', function (e) {
             e.preventDefault();
             if (activeRowRef) {
                 activeRowRef.setAttribute('data-status', 'Pending');
                 activeRowRef.cells[4].innerHTML = `<span class="stage-tag screening">Pending</span>`;
-                
+
                 alert(`Success: Brand new invite link effectively dispatched to ${candidateEmailInput.value}.`);
                 toggleEmailModal(false);
                 filterScreeningList();
@@ -639,4 +819,5 @@
         updateCounter();
     </script>
 </body>
+
 </html>

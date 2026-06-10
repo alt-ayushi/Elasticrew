@@ -126,177 +126,175 @@
     </nav>
 
     <main class="main-content">
-        <header class="header-actions">
-            <h1 class="page-title">Technical Interview Scheduler</h1>
+        <div style="font-size: 11px; font-weight: 800; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.8px;">Pipeline Stages</div>
+        <div class="sub-nav-container">
+            <a href="hiring-pipeline.html?v=3" class="sub-nav-tab text-decoration-none">
+                <svg class="tab-icon icon-purple" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 7l-7 5 7 5V7z"></path>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <span>Video Screening</span>
+            </a>
+            <a href="#" class="sub-nav-tab text-decoration-none">
+                <svg class="tab-icon icon-blue-alt" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                </svg>
+                <span>MCQ Assessment</span>
+            </a>
+            <a href="tech-scheduler.html?v=3" class="sub-nav-tab active text-decoration-none">
+                <svg class="tab-icon icon-green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                </svg>
+                <span>Tech Scheduler</span>
+            </a>
+            <a href="#" class="sub-nav-tab text-decoration-none">
+                <svg class="tab-icon icon-amber" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>HR Interview</span>
+            </a>
+        </div>
+
+        <header class="header-actions" style="margin-bottom: 20px;">
+            <div>
+                <h1 class="page-title">Technical Interview Workspace</h1>
+                <p style="color: #64748b; font-size: 14px; margin-top: 6px;">Manage human panellists, schedule technical rounds, and review direct feedback.</p>
+            </div>
+            <div style="display:flex; gap: 12px; align-items: center;">
+                <button class="btn-secondary">Export Schedule</button>
+                <button class="btn-secondary">Add Panellist</button>
+                <button class="btn-secondary">Refresh</button>
+            </div>
         </header>
 
-        <div class="dept-button-grid" id="deptButtonsContainer">
-            <div class="dept-btn-card" data-dept="Tech and Delivery" onclick="toggleDepartmentDrawer(this)">
-                <span class="dept-title-txt">Tech & Delivery</span><span class="dept-pill-count" id="count-Tech-Delivery">0</span>
+        <!-- Action-Oriented KPI Panel -->
+        <section class="kpi-panel-container">
+            <div class="kpi-card warning">
+                <div class="kpi-label">Pending Scheduling</div>
+                <div class="kpi-count">8</div>
             </div>
-            <div class="dept-btn-card" data-dept="Operations" onclick="toggleDepartmentDrawer(this)">
-                <span class="dept-title-txt">Operations</span><span class="dept-pill-count" id="count-Operations">0</span>
+            <div class="kpi-card neutral">
+                <div class="kpi-label">Interview Scheduled</div>
+                <div class="kpi-count">14</div>
             </div>
-            <div class="dept-btn-card" data-dept="HR" onclick="toggleDepartmentDrawer(this)">
-                <span class="dept-title-txt">HR</span><span class="dept-pill-count" id="count-HR">0</span>
+            <div class="kpi-card danger">
+                <div class="kpi-label">Pending Feedback</div>
+                <div class="kpi-count">3</div>
             </div>
-            <div class="dept-btn-card" data-dept="Finance" onclick="toggleDepartmentDrawer(this)">
-                <span class="dept-title-txt">Finance</span><span class="dept-pill-count" id="count-Finance">0</span>
+            <div class="kpi-card success">
+                <div class="kpi-label">Ready For HR Round</div>
+                <div class="kpi-count">6</div>
             </div>
-            <div class="dept-btn-card" data-dept="Sales" onclick="toggleDepartmentDrawer(this)">
-                <span class="dept-title-txt">Sales</span><span class="dept-pill-count" id="count-Sales">0</span>
-            </div>
-            <div class="dept-btn-card" data-dept="Branding and Marketing" onclick="toggleDepartmentDrawer(this)">
-                <span class="dept-title-txt">Branding & Mktg</span><span class="dept-pill-count" id="count-Branding-and-Marketing">0</span>
-            </div>
-        </div>
+        </section>
 
-        <div class="panel-directory-drawer" id="panelDirectoryDrawer">
-            <div class="flex-between" style="border-bottom: 1px solid #f1f5f9; padding-bottom: 10px;">
-                <div>
-                    <h3 class="page-title" style="font-size: 15px; margin:0;" id="drawerActiveTitle">Tech and Delivery Panel Roster</h3>
-                    <p style="font-size:11.5px; color:#64748b; margin:2px 0 0 0;">Register panellists for this track below. Added users become visible when booking slots for candidates matching this department.</p>
-                </div>
-                <button class="btn-secondary" style="padding: 6px 12px; font-size:12px;" onclick="openAddPanellistModal()">+ Add Panellist to Track</button>
-            </div>
-            <div class="chip-container" id="panellistChipBox"></div>
-        </div>
+        <!-- Sub Nav Tab Segment Control Layer -->
+        
 
+        <!-- Enterprise Filter Bar -->
+        <section class="enterprise-filter-bar">
+            <div class="filter-chip">Role: Full Stack <span>&times;</span></div>
+            <div class="filter-chip">Interview Status: Pending Feedback <span>&times;</span></div>
+            <button class="add-filter-btn">+ Add Filter</button>
+        </section>
+
+        <!-- Enterprise Data Grid (Tech Scheduler) -->
         <section class="candidates-section">
-            <div class="sub-nav-container">
-                
-                <a href="hiring-pipeline.html?v=3" class="sub-nav-tab text-decoration-none">
-                    <svg class="tab-icon icon-purple" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                    <span>Video Bot Screening</span>
-                </a>
-                <a href="#" class="sub-nav-tab text-decoration-none">
-                    <svg class="tab-icon icon-blue-alt" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
-                    <span>MCQ Assessment</span>
-                </a>
-                <a href="tech-scheduler.html?v=3" class="sub-nav-tab active text-decoration-none">
-                    <svg class="tab-icon icon-green" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line></svg>
-                    <span>Tech Scheduler</span>
-                    <span class="count-pill" id="totalCountBubble">5</span>
-                </a>
-                <a href="#" class="sub-nav-tab text-decoration-none">
-                    <svg class="tab-icon icon-amber" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15 a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                    <span>HR Interview</span>
-                </a>
-            </div>
-
-            <table class="candidate-table" style="table-layout: fixed; width: 100%;">
-                <thead>
-                    <tr>
-                        <th class="grid-layout-th col-cand">Candidate Name</th>
-                        <th class="grid-layout-th col-panel">Assigned Panellists</th>
-                        <th class="grid-layout-th col-combined-time-assets">Schedule & Assets Detail</th>
-                        <th class="grid-layout-th col-status">Status</th>
-                        <th class="grid-layout-th col-book" style="text-align: center;">Booking</th>
-                        <th class="grid-layout-th col-manage" style="padding-right: 24px;">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="schedulerListBody">
+            <div class="table-responsive-wrapper">
+                <table class="candidate-table enterprise-table" style="table-layout: fixed; width: 100%;">
+                    <thead>
+                        <tr>
+                            <th style="width: 40px; text-align: center;"><input type="checkbox"></th>
+                            <th style="width: 20%;">Candidate</th>
+                            <th style="width: 15%;">Role</th>
+                            <th style="width: 18%;">Assigned Panel</th>
+                            <th style="width: 15%;">Interview Status</th>
+                            <th style="width: 15%;">Feedback Status</th>
+                            <th style="width: 15%;">Next Action</th>
+                            <th style="width: 10%; text-align: right; padding-right: 20px;">Actions</th>
+                        </tr>
+                    </thead>
                     
-                    <tr class="candidate-row" data-name="Grace Hopper" data-dept="Tech and Delivery" data-track="Full Stack">
-                        <td class="grid-layout-td col-cand"><strong>Grace Hopper</strong><div style="font-size:11px; color:#64748b;">Tech & Delivery</div></td>
-                        <td class="grid-layout-td col-panel" id="panelCell-GraceHopper">
-                            <div class="stacked-panel-wrapper"><strong>Gaurav Paliwal</strong> <span style="font-size:11px; color:#64748b;">(Group Manager)</span></div>
-                            <div class="stacked-panel-wrapper"><strong>Arpit Pathak</strong> <span style="font-size:11px; color:#64748b;">(Manager)</span></div>
-                        </td>
-                        <td class="grid-layout-td col-combined-time-assets" id="combinedCell-GraceHopper">
-                            <div class="timestamp-txt" style="margin-bottom: 4px;">08 Jun 26 - 10:00 AM (60 mins)</div>
-                            <div style="display:flex; gap:12px; margin-top:2px;">
-                                <span class="asset-link-active" onclick="fetchTeamsAsset('Recording', 'Grace Hopper')">🎥 Recording</span>
-                                <span class="asset-link-active" onclick="fetchTeamsAsset('Transcript', 'Grace Hopper')">📄 Transcript</span>
-                            </div>
-                        </td>
-                        <td class="grid-layout-td col-status" id="statusCell-GraceHopper"><span class="stage-tag completed">Completed</span></td>
-                        <td class="grid-layout-td col-book" style="text-align: center;">
-                            <button class="btn-submit" style="background:#64748b; padding:4px 8px; font-size:11px; opacity:0.6; cursor:not-allowed;" disabled>Locked 🔒</button>
-                        </td>
-                        <td class="grid-layout-td col-manage">
-                            <select class="action-dropdown" style="width:80px !important;" onchange="handleSchedulerAction(this)">
-                                <option value="" disabled selected>Mng</option>
-                                <option value="hr-invite">HR Invite</option>
-                                <option value="delete" class="danger-option">Delete</option>
-                            </select>
-                        </td>
-                    </tr>
+                    <!-- Row 1 -->
+                    <tbody class="candidate-row-group">
+                        <tr class="enterprise-row">
+                            <td style="text-align: center; vertical-align: middle;"><input type="checkbox"></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar-circle">GH</div>
+                                    <div>
+                                        <strong>Grace Hopper</strong>
+                                        
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Full Stack Eng</td>
+                            <td>
+                                <strong>Gaurav Paliwal</strong><br>
+                                <span style="font-size:11px; color:#64748b;">Technical Lead</span>
+                            </td>
+                            <td><span class="status-badge success">Completed</span></td>
+                            <td><span class="status-badge success">Submitted</span></td>
+                            <td><strong style="color:var(--primary-blue);">Advance Candidate</strong></td>
+                            <td style="text-align: right; padding-right: 20px;">
+                                <button class="btn-primary-action">Advance</button>
+                            </td>
+                        </tr>
+                        </tbody>
 
-                    <tr class="candidate-row" data-name="Alan Turing" data-dept="Operations" data-track="Logistics Manager">
-                        <td class="grid-layout-td col-cand"><strong>Alan Turing</strong><div style="font-size:11px; color:#64748b;">Operations</div></td>
-                        <td class="grid-layout-td col-panel" id="panelCell-AlanTuring"><span style="color: #94a3b8; font-style: italic; font-size: 12px;">Unassigned</span></td>
-                        <td class="grid-layout-td col-combined-time-assets" id="combinedCell-AlanTuring" style="color: #64748b; font-style: italic; font-size: 12px;">Awaiting Schedule Assignment (Assets Unavailable)</td>
-                        <td class="grid-layout-td col-status" id="statusCell-AlanTuring"><span class="stage-tag pending">Pending</span></td>
-                        <td class="grid-layout-td col-book" style="text-align: center;">
-                            <button class="btn-submit" style="background:#2563eb; padding:4px 8px; font-size:11px;" onclick="openRowBookingModal('Alan Turing', 'Operations')">Book Slot 🗓️</button>
-                        </td>
-                        <td class="grid-layout-td col-manage">
-                            <select class="action-dropdown" style="width:80px !important;" onchange="handleSchedulerAction(this)">
-                                <option value="" disabled selected>Mng</option>
-                                <option value="complete-manual">Complete</option>
-                                <option value="cancel">Cancel</option>
-                                <option value="delete" class="danger-option">Delete</option>
-                            </select>
-                        </td>
-                    </tr>
+                    <!-- Row 2 -->
+                    <tbody class="candidate-row-group">
+                        <tr class="enterprise-row">
+                            <td style="text-align: center; vertical-align: middle;"><input type="checkbox"></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar-circle">AT</div>
+                                    <div>
+                                        <strong>Alan Turing</strong>
+                                        
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Backend Eng</td>
+                            <td>
+                                <span style="color:#94a3b8; font-style:italic;">Unassigned</span>
+                            </td>
+                            <td><span class="status-badge pending">Pending Scheduling</span></td>
+                            <td><span class="status-badge neutral" style="background:#f1f5f9; color:#64748b;">N/A</span></td>
+                            <td><strong style="color:var(--primary-blue);">Assign Panel & Book</strong></td>
+                            <td style="text-align: right; padding-right: 20px;">
+                                <button class="btn-primary-action" style="background:#e0e7ff; border-color:#c7d2fe; color:var(--primary-blue);">Book Slot</button>
+                            </td>
+                        </tr>
+                        </tbody>
 
-                    <tr class="candidate-row" data-name="Ada Lovelace" data-dept="HR" data-track="Talent Acquisition">
-                        <td class="grid-layout-td col-cand"><strong>Ada Lovelace</strong><div style="font-size:11px; color:#64748b;">HR</div></td>
-                        <td class="grid-layout-td col-panel" id="panelCell-AdaLovelace"><span style="color: #94a3b8; font-style: italic; font-size: 12px;">Unassigned</span></td>
-                        <td class="grid-layout-td col-combined-time-assets" id="combinedCell-AdaLovelace" style="color: #64748b; font-style: italic; font-size: 12px;">Awaiting Schedule Assignment (Assets Unavailable)</td>
-                        <td class="grid-layout-td col-status" id="statusCell-AdaLovelace"><span class="stage-tag pending">Pending</span></td>
-                        <td class="grid-layout-td col-book" style="text-align: center;">
-                            <button class="btn-submit" style="background:#2563eb; padding:4px 8px; font-size:11px;" onclick="openRowBookingModal('Ada Lovelace', 'HR')">Book Slot 🗓️</button>
-                        </td>
-                        <td class="grid-layout-td col-manage">
-                            <select class="action-dropdown" style="width:80px !important;" onchange="handleSchedulerAction(this)">
-                                <option value="" disabled selected>Mng</option>
-                                <option value="complete-manual">Complete</option>
-                                <option value="cancel">Cancel</option>
-                                <option value="delete" class="danger-option">Delete</option>
-                            </select>
-                        </td>
-                    </tr>
-
-                    <tr class="candidate-row" data-name="Linus Torvalds" data-dept="Finance" data-track="Internal Auditor">
-                        <td class="grid-layout-td col-cand"><strong>Linus Torvalds</strong><div style="font-size:11px; color:#64748b;">Finance</div></td>
-                        <td class="grid-layout-td col-panel" id="panelCell-LinusTorvalds"><span style="color: #94a3b8; font-style: italic; font-size: 12px;">Unassigned</span></td>
-                        <td class="grid-layout-td col-combined-time-assets" id="combinedCell-LinusTorvalds" style="color: #64748b; font-style: italic; font-size: 12px;">Awaiting Schedule Assignment (Assets Unavailable)</td>
-                        <td class="grid-layout-td col-status" id="statusCell-LinusTorvalds"><span class="stage-tag pending">Pending</span></td>
-                        <td class="grid-layout-td col-book" style="text-align: center;">
-                            <button class="btn-submit" style="background:#2563eb; padding:4px 8px; font-size:11px;" onclick="openRowBookingModal('Linus Torvalds', 'Finance')">Book Slot 🗓️</button>
-                        </td>
-                        <td class="grid-layout-td col-manage">
-                            <select class="action-dropdown" style="width:80px !important;" onchange="handleSchedulerAction(this)">
-                                <option value="" disabled selected>Mng</option>
-                                <option value="complete-manual">Complete</option>
-                                <option value="cancel">Cancel</option>
-                                <option value="delete" class="danger-option">Delete</option>
-                            </select>
-                        </td>
-                    </tr>
-
-                    <tr class="candidate-row" data-name="Margaret Hamilton" data-dept="Sales" data-track="Account Executive">
-                        <td class="grid-layout-td col-cand"><strong>Margaret Hamilton</strong><div style="font-size:11px; color:#64748b;">Sales</div></td>
-                        <td class="grid-layout-td col-panel" id="panelCell-MargaretHamilton"><span style="color: #94a3b8; font-style: italic; font-size: 12px;">Unassigned</span></td>
-                        <td class="grid-layout-td col-combined-time-assets" id="combinedCell-MargaretHamilton" style="color: #64748b; font-style: italic; font-size: 12px;">Awaiting Schedule Assignment (Assets Unavailable)</td>
-                        <td class="grid-layout-td col-status" id="statusCell-MargaretHamilton"><span class="stage-tag pending">Pending</span></td>
-                        <td class="grid-layout-td col-book" style="text-align: center;">
-                            <button class="btn-submit" style="background:#2563eb; padding:4px 8px; font-size:11px;" onclick="openRowBookingModal('Margaret Hamilton', 'Sales')">Book Slot 🗓️</button>
-                        </td>
-                        <td class="grid-layout-td col-manage">
-                            <select class="action-dropdown" style="width:80px !important;" onchange="handleSchedulerAction(this)">
-                                <option value="" disabled selected>Mng</option>
-                                <option value="complete-manual">Complete</option>
-                                <option value="cancel">Cancel</option>
-                                <option value="delete" class="danger-option">Delete</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div id="noSchedulerResults" class="empty-state" style="display: none;">No scheduled sessions found.</div>
+                    <!-- Row 3 -->
+                    <tbody class="candidate-row-group">
+                        <tr class="enterprise-row">
+                            <td style="text-align: center; vertical-align: middle;"><input type="checkbox"></td>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="avatar-circle">AL</div>
+                                    <div>
+                                        <strong>Ada Lovelace</strong>
+                                        
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Frontend Eng</td>
+                            <td>
+                                <strong>Ankit Mehta</strong><br>
+                                <span style="font-size:11px; color:#64748b;">Senior Engineer</span>
+                            </td>
+                            <td><span class="status-badge success">Completed</span></td>
+                            <td><span class="status-badge warning" style="background:#fee2e2; color:#b91c1c;">Pending Feedback</span></td>
+                            <td><strong style="color:#b91c1c;">Follow Up Feedback</strong></td>
+                            <td style="text-align: right; padding-right: 20px;">
+                                <button class="btn-primary-action">Follow Up</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                </table>
+            </div>
         </section>
     </main>
 

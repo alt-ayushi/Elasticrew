@@ -505,13 +505,13 @@ body {
 }
 
 .sub-nav-tab.active {
-    background: #ffffff !important;
-    color: var(--primary-blue) !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background: var(--primary-blue) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(14, 45, 123, 0.3);
 }
 
 .tab-icon { flex-shrink: 0; transition: stroke 0.3s; }
-.sub-nav-tab.active .tab-icon { stroke: var(--primary-blue) !important; }
+.sub-nav-tab.active .tab-icon { stroke: #ffffff !important; }
 
 .count-pill {
     background-color: #e2e8f0;
@@ -525,8 +525,8 @@ body {
     transition: all 0.3s;
 }
 .sub-nav-tab.active .count-pill {
-    background-color: #e0e7ff;
-    color: var(--primary-blue);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
 }
 
 /* --- COLUMN SIZING LOCKS --- */

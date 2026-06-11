@@ -299,6 +299,8 @@
 
         <script>
             function selectPanelTrack(trackName, tabElement) {
+                const isAlreadyActive = tabElement.style.backgroundColor === 'rgb(239, 246, 255)' || tabElement.style.background === '#eff6ff';
+
                 const tabs = document.querySelectorAll('.panel-track-tab');
                 tabs.forEach(tab => {
                     tab.style.background = 'white';
@@ -309,6 +311,11 @@
                     tab.querySelector('.tab-badge').style.color = '#64748b';
                 });
                 
+                if (isAlreadyActive) {
+                    document.getElementById('panelRosterCard').style.display = 'none';
+                    return;
+                }
+
                 tabElement.style.background = '#eff6ff';
                 tabElement.style.border = '1px solid #3b82f6';
                 tabElement.querySelector('.tab-title').style.color = '#1d4ed8';

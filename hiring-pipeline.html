@@ -516,91 +516,100 @@
                     
                     <thead>
                         <tr>
-                            
-                            <th>Candidate</th>
-                            <th>Role</th>
-                            <th>Invited On</th>
+                            <th>Candidate_ID</th>
+                            <th>Name</th>
+                            <th>Sub Department</th>
+                            <th>Invite Date</th>
                             <th>Submitted On</th>
-                            <th>Recommended Action</th>
+                            <th>Status</th>
+                            <th style="text-align: center;">HR Notes</th>
                             <th style="text-align: right; padding-right: 20px;">Actions</th>
                         </tr>
                     </thead>
-                    <!-- Row 2 -->
+                    <!-- Row 1 -->
                     <tbody class="candidate-row-group">
                         <tr class="enterprise-row">
-                            
+                            <td><span style="font-family: monospace; color: #64748b;">#C-1021</span></td>
                             <td>
                                 <div style="display: flex; align-items: center; gap: 10px;">
-                                    
                                     <div><strong>Grace Hopper</strong></div>
                                 </div>
                             </td>
-                            <td>Full Stack</td>
-                            <td><div class="timestamp-txt" style="color:#64748b;">05 Jun 2026</div></td>
-                            <td>
-                                <div class="timestamp-txt" style="color:#1e293b;">07 Jun 2026</div>
+                            <td>Engineering</td>
+                            <td><div class="timestamp-txt" style="color:#64748b;">01 Jun 2026</div></td>
+                            <td><div class="timestamp-txt" style="color:#0f172a; font-weight:500;">03 Jun 2026</div></td>
+                            <td><span class="status-badge" style="background: #e0f2fe; color: #0284c7; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600;">Pending HR Review</span></td>
+                            <td style="text-align: center;">
+                                <button onclick="openNotesModal('Grace Hopper', this)" style="position: relative; width: 36px; height: 36px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                </button>
                             </td>
-                            
-                            <td><strong style="color:var(--primary-blue);">Move To Assessment</strong></td>
                             <td style="text-align: right; padding-right: 20px;">
-                                <div style="display: flex; justify-content: flex-end; gap: 6px;">
-                                    <button class="btn-primary-action">Move To Assessment</button>
-                                    <button class="btn-primary-action"
-                                        style="padding: 6px 10px; color: #64748b; background:#f1f5f9;">&#8942;</button>
-                                </div>
+                                <select class="action-dropdown" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 13px; color: #0f172a; cursor: pointer;">
+                                    <option value="" disabled selected>Actions...</option>
+                                    <option value="mcq">Move to MCQ Assessment</option>
+                                    <option value="tech">Move to Tech Schedular</option>
+                                    <option value="hr">Move to HR interview</option>
+                                    <option value="complete">Review Complete</option>
+                                </select>
                             </td>
                         </tr>
                     </tbody>
-                    <!-- Row 3 (Hold Example) -->
+                    <!-- Row 2 -->
                     <tbody class="candidate-row-group">
                         <tr class="enterprise-row">
-                            
+                            <td><span style="font-family: monospace; color: #64748b;">#C-1025</span></td>
                             <td>
                                 <div style="display: flex; align-items: center; gap: 10px;">
-                                    
                                     <div><strong>Charles Babbage</strong></div>
                                 </div>
                             </td>
-                            <td>Hardware Eng</td>
-                            <td><div class="timestamp-txt" style="color:#64748b;">02 Jun 2026</div></td>
-                            <td>
-                                <div class="timestamp-txt" style="color:#1e293b;">05 Jun 2026</div>
+                            <td>Hardware</td>
+                            <td><div class="timestamp-txt" style="color:#64748b;">28 May 2026</div></td>
+                            <td><div class="timestamp-txt" style="color:#0f172a; font-weight:500;">30 May 2026</div></td>
+                            <td><span class="status-badge" style="background: #dcfce7; color: #15803d; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600;">Complete HR Review</span></td>
+                            <td style="text-align: center;">
+                                <button onclick="openNotesModal('Charles Babbage', this)" style="position: relative; width: 36px; height: 36px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                </button>
                             </td>
-                            
-                            <td><strong style="color:#475569;">Keep On Hold</strong></td>
                             <td style="text-align: right; padding-right: 20px;">
-                                <div style="display: flex; justify-content: flex-end; gap: 6px;">
-                                    <button class="btn-primary-action" style="color:#475569;">Manage Hold</button>
-                                    <button class="btn-primary-action"
-                                        style="padding: 6px 10px; color: #64748b; background:#f1f5f9;">&#8942;</button>
-                                </div>
+                                <select class="action-dropdown" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 13px; color: #0f172a; cursor: pointer;">
+                                    <option value="" disabled selected>Actions...</option>
+                                    <option value="mcq">Move to MCQ Assessment</option>
+                                    <option value="tech">Move to Tech Schedular</option>
+                                    <option value="hr">Move to HR interview</option>
+                                    <option value="complete">Review Complete</option>
+                                </select>
                             </td>
                         </tr>
                     </tbody>
-                    <!-- Row 5 (Reject Example) -->
+                    <!-- Row 3 -->
                     <tbody class="candidate-row-group">
                         <tr class="enterprise-row">
-                            
+                            <td><span style="font-family: monospace; color: #64748b;">#C-1029</span></td>
                             <td>
                                 <div style="display: flex; align-items: center; gap: 10px;">
-                                    
                                     <div><strong>Linus Torvalds</strong></div>
                                 </div>
                             </td>
-                            <td>Backend Eng</td>
-                            <td><div class="timestamp-txt" style="color:#64748b;">28 May 2026</div></td>
-                            <td>
-                                <div class="timestamp-txt" style="color:#1e293b;">01 Jun 2026</div>
+                            <td>Product</td>
+                            <td><div class="timestamp-txt" style="color:#64748b;">25 May 2026</div></td>
+                            <td><div class="timestamp-txt" style="color:#0f172a; font-weight:500;">25 May 2026</div></td>
+                            <td><span class="status-badge" style="background: #e0f2fe; color: #0284c7; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600;">Pending HR Review</span></td>
+                            <td style="text-align: center;">
+                                <button onclick="openNotesModal('Linus Torvalds', this)" style="position: relative; width: 36px; height: 36px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                                </button>
                             </td>
-                            
-                            <td><strong style="color:#b91c1c;">Reject Candidate</strong></td>
                             <td style="text-align: right; padding-right: 20px;">
-                                <div style="display: flex; justify-content: flex-end; gap: 6px;">
-                                    <button class="btn-primary-action"
-                                        style="color:#b91c1c; border-color:#fca5a5;">Reject</button>
-                                    <button class="btn-primary-action"
-                                        style="padding: 6px 10px; color: #64748b; background:#f1f5f9;">&#8942;</button>
-                                </div>
+                                <select class="action-dropdown" style="padding: 6px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 13px; color: #0f172a; cursor: pointer;">
+                                    <option value="" disabled selected>Actions...</option>
+                                    <option value="mcq">Move to MCQ Assessment</option>
+                                    <option value="tech">Move to Tech Schedular</option>
+                                    <option value="hr">Move to HR interview</option>
+                                    <option value="complete">Review Complete</option>
+                                </select>
                             </td>
                         </tr>
                     </tbody>

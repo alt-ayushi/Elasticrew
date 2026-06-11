@@ -242,13 +242,19 @@
         </div>
 
         
+        <header class="header-actions" style="margin-bottom: 20px;">
+            <div>
+                <h1 class="page-title">Panelist Management</h1>
+            </div>
+        </header>
+
         <!-- Panelist Management Section -->
         <section class="panelist-management-section" style="margin-bottom: 30px;">
             <!-- Tabs -->
             <div style="display: flex; gap: 10px; margin-bottom: 16px; overflow-x: auto; padding-bottom: 4px;">
                 <div onclick="selectPanelTrack('Tech and Delivery', this)" class="panel-track-tab" style="display: flex; align-items: center; justify-content: space-between; min-width: 160px; padding: 10px 16px; background: white; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: all 0.2s ease;">
                     <span class="tab-title" style="font-size: 13px; font-weight: 600; color: #0f172a;">Tech & Delivery</span>
-                    <span class="tab-badge" style="background: #f1f5f9; color: #64748b; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600;">2</span>
+                    <span id="badge-Tech-and-Delivery" class="tab-badge" style="background: #f1f5f9; color: #64748b; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600;">2</span>
                 </div>
                 <div onclick="selectPanelTrack('Operations', this)" class="panel-track-tab" style="display: flex; align-items: center; justify-content: space-between; min-width: 160px; padding: 10px 16px; background: white; border: 1px solid #e2e8f0; border-radius: 6px; cursor: pointer; transition: all 0.2s ease;">
                     <span class="tab-title" style="font-size: 13px; font-weight: 600; color: #0f172a;">Operations</span>
@@ -325,52 +331,14 @@
                 
                 document.getElementById('panelRosterTitle').innerText = trackName + " Panel Roster";
                 
-                const chips = document.querySelectorAll('.dummy-panellist-chip');
-                if (trackName === 'Tech and Delivery') {
-                    chips.forEach(chip => chip.style.display = 'flex');
-                } else {
-                    chips.forEach(chip => chip.style.display = 'none');
+                // Integrate with original system
+                currentActiveSelectedDepartment = trackName;
+                if (typeof renderPanellistDirectoryChips === 'function') {
+                    renderPanellistDirectoryChips();
                 }
                 
                 document.getElementById('panelRosterCard').style.display = 'block';
             }
-
-            document.addEventListener('DOMContentLoaded', () => {
-                const panellistForm = document.getElementById('panellistForm');
-                if (panellistForm) {
-                    panellistForm.addEventListener('submit', function(e) {
-                        e.preventDefault();
-                        const name = document.getElementById('panelName').value;
-                        const designation = document.getElementById('panelDesignation').value;
-                        
-                        const newChip = document.createElement('div');
-                        newChip.style.cssText = "display: flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 20px; background: white; font-size: 13px; animation: fadeIn 0.3s ease-out;";
-                        newChip.innerHTML = `
-                            <span style="font-weight: 700; color: #0f172a;">${name}</span>
-                            <span style="color: #64748b;">(${designation})</span>
-                            <span style="color: #94a3b8; cursor: pointer; font-size: 14px; margin-left: 4px;" onclick="this.parentElement.remove()">&times;</span>
-                        `;
-                        
-                        document.getElementById('panellistChipsContainer').appendChild(newChip);
-                        
-                        if (typeof togglePanelModal === 'function') {
-                            togglePanelModal(false);
-                        } else {
-                            document.getElementById('panelModalOverlay').style.display = 'none';
-                        }
-                        panellistForm.reset();
-                        
-                        // Increment badge count safely
-                        const activeTab = document.querySelector('.panel-track-tab[style*="#eff6ff"]');
-                        if(activeTab) {
-                            const badge = activeTab.querySelector('.tab-badge');
-                            if(badge) {
-                                badge.innerText = parseInt(badge.innerText) + 1;
-                            }
-                        }
-                    });
-                }
-            });
         </script>
         
 
@@ -416,7 +384,7 @@
                 <p style="font-size: 13px; color: #64748b; margin-top: 4px; margin-bottom: 0;">Candidates Pending Technical Interview Scheduling</p>
             </div>
             <div class="table-responsive-wrapper">
-                <table class="candidate-table enterprise-table" style="width: 100%; table-layout: fixed;">
+                <table class="candidate-table enterprise-table" style="width: 100%;">
                     <thead>
                         <tr>
                             <th style="width: 10%; ">Candidate_ID</th>
@@ -563,7 +531,7 @@
                 <p style="font-size: 13px; color: #64748b; margin-top: 4px; margin-bottom: 0;">Candidates who have Completed Technical Interviews</p>
             </div>
             <div class="table-responsive-wrapper">
-                <table class="candidate-table enterprise-table" style="width: 100%; table-layout: fixed;">
+                <table class="candidate-table enterprise-table" style="width: 100%;">
                     <thead>
                         <tr>
                             <th style="width: 8%; ">CANDIDATE_ID</th>
@@ -794,32 +762,46 @@
         }
 
         function renderPanellistDirectoryChips() {
-            panellistChipBox.innerHTML = '';
+            const container = document.getElementById('panellistChipsContainer') || document.getElementById('panellistChipBox');
+            if (!container) return;
+            container.innerHTML = '';
             const list = globalDepartmentPanellistMatrix[currentActiveSelectedDepartment] || [];
             
             if (list.length === 0) {
-                panellistChipBox.innerHTML = '<div style="font-size:12.5px; color:#64748b; font-style:italic; padding:4px 0;">No active panellists registered for this track. Click Add Panellist to populate.</div>';
+                container.innerHTML = '<div style="font-size:12.5px; color:#64748b; font-style:italic; padding:4px 0;">No active panellists registered for this track. Click Add Panellist to populate.</div>';
                 return;
             }
 
             list.forEach((panellist, index) => {
                 const chip = document.createElement('div');
-                chip.className = 'panellist-chip';
-                chip.innerHTML = `<span><strong>${panellist.name}</strong> (${panellist.desig})</span><button class="remove-chip-btn" onclick="removeDirectoryRosterNode(${index})">&times;</button>`;
-                panellistChipBox.appendChild(chip);
+                chip.style.cssText = "display: flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid #e2e8f0; border-radius: 20px; background: white; font-size: 13px;";
+                chip.innerHTML = `<span style="font-weight: 700; color: #0f172a;">${panellist.name}</span><span style="color: #64748b;">(${panellist.desig})</span><span style="color: #94a3b8; cursor: pointer; font-size: 14px; margin-left: 4px;" onclick="removeDirectoryRosterNode(${index})">&times;</span>`;
+                container.appendChild(chip);
             });
         }
 
         function updateBadgeCounters() {
-            Object.keys(globalDepartmentPanellistMatrix).forEach(key => {
-                const standardizedId = key.replace(/\s+/g, '-');
-                const badge = document.getElementById(`count-${standardizedId}`);
-                if (badge) badge.innerText = globalDepartmentPanellistMatrix[key].length;
+            const tabs = document.querySelectorAll('.panel-track-tab');
+            tabs.forEach(tab => {
+                let title = tab.querySelector('.tab-title').innerText.trim();
+                if (title === "Tech & Delivery") title = "Tech and Delivery";
+                if (title === "Branding & Mktg") title = "Branding and Marketing";
+                
+                const count = (globalDepartmentPanellistMatrix[title] || []).length;
+                const badge = tab.querySelector('.tab-badge');
+                if (badge) badge.innerText = count;
             });
         }
 
         function openAddPanellistModal() { panelModalOverlay.classList.add('active'); }
-        function togglePanelModal(show) { if (!show) { panelModalOverlay.classList.remove('active'); panellistForm.reset(); } }
+        function togglePanelModal(show) {
+            if (show) {
+                document.getElementById('panelModalOverlay').classList.add('active');
+            } else {
+                document.getElementById('panelModalOverlay').classList.remove('active');
+                document.getElementById('panellistForm').reset();
+            }
+        }
         
         panellistForm.addEventListener('submit', function(e) {
             e.preventDefault();

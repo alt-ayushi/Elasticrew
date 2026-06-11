@@ -375,7 +375,7 @@
                             <th>Sub Department</th>
                             <th>Invite Date</th>
                             <th>Status</th>
-                            <th>HR Notes</th>
+                            <th style="text-align: center;">HR Notes</th>
                             <th style="text-align: right; padding-right: 20px;">Actions</th>
                         </tr>
                     </thead>
@@ -900,6 +900,35 @@
         });
 
         updateCounter();
+    </script>
+
+    <!-- HR Notes Modal -->
+    <div id="hrNotesModal" class="modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.5); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: white; width: 400px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;">
+            <div style="padding: 16px 20px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0; font-size: 16px; color: #0f172a; font-weight: 600;">HR Notes - <span id="notesCandidateName">Candidate</span></h3>
+                <button onclick="closeNotesModal()" style="background: none; border: none; cursor: pointer; color: #64748b;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div style="padding: 20px;">
+                <textarea style="width: 100%; height: 120px; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; font-family: inherit; font-size: 14px; resize: none; box-sizing: border-box;" placeholder="Add private HR notes here..."></textarea>
+            </div>
+            <div style="padding: 16px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 10px;">
+                <button onclick="closeNotesModal()" class="btn-secondary" style="padding: 8px 16px; border-radius: 6px; border: 1px solid #cbd5e1; background: white; cursor: pointer;">Cancel</button>
+                <button onclick="closeNotesModal()" class="btn-primary" style="padding: 8px 16px; border-radius: 6px; border: none; background: var(--primary-blue); color: white; font-weight: 600; cursor: pointer;">Save Notes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openNotesModal(candidateName) {
+            document.getElementById('notesCandidateName').innerText = candidateName;
+            document.getElementById('hrNotesModal').style.display = 'flex';
+        }
+        function closeNotesModal() {
+            document.getElementById('hrNotesModal').style.display = 'none';
+        }
     </script>
 </body>
 

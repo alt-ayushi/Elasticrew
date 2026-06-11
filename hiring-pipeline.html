@@ -267,7 +267,8 @@
         .dropdown-menu a:hover {
             background-color: #f1f5f9;
         }
-    </style>
+    .candidate-table th, .candidate-table td { white-space: nowrap !important; overflow: hidden !important; text-overflow: clip !important; }
+</style>
 
     <style>
         .enterprise-table td strong {
@@ -286,7 +287,8 @@
         .enterprise-table td:first-child {
             padding-left: 24px !important;
         }
-    </style>
+    .candidate-table th, .candidate-table td { white-space: nowrap !important; overflow: hidden !important; text-overflow: clip !important; }
+</style>
 </head>
 
 
@@ -411,13 +413,13 @@
 
                     <thead>
                         <tr>
-                            <th>Candidate_ID</th>
-                            <th>Name</th>
-                            <th>Sub Department</th>
-                            <th>Invite Date</th>
-                            <th>Status</th>
-                            <th style="text-align: center;">HR Notes</th>
-                            <th style="text-align: right; padding-right: 20px;">Actions</th>
+                            <th style="width: 10%; white-space: nowrap;">Candidate_ID</th>
+                            <th style="width: 25%; white-space: nowrap;">Name</th>
+                            <th style="width: 15%; white-space: nowrap;">Sub Department</th>
+                            <th style="width: 12%; white-space: nowrap;">Invite Date</th>
+                            <th style="width: 16%; white-space: nowrap;">Status</th>
+                            <th style="width: 8%; white-space: nowrap; text-align: center;">HR Notes</th>
+                            <th style="width: 14%; white-space: nowrap; text-align: right; padding-right: 20px;">Actions</th>
                         </tr>
                     </thead>
                     <!-- Row 1 -->
@@ -597,15 +599,15 @@
 
                     <thead>
                         <tr>
-                            <th>Candidate_ID</th>
-                            <th>Name</th>
-                            <th>Sub Department</th>
-                            <th>Invite Date</th>
-                            <th>Submitted On</th>
-                            <th>Status</th>
-                            <th style="text-align: center;">HR Notes</th>
-                            <th style="text-align: center;">View Screening</th>
-                            <th style="text-align: right; padding-right: 20px;">Actions</th>
+                            <th style="width: 9%; white-space: nowrap;">CANDIDATE_ID</th>
+                            <th style="width: 16%; white-space: nowrap;">NAME</th>
+                            <th style="width: 12%; white-space: nowrap;">SUB DEPARTMENT</th>
+                            <th style="width: 11%; white-space: nowrap;">INVITE DATE</th>
+                            <th style="width: 11%; white-space: nowrap;">SUBMITTED ON</th>
+                            <th style="width: 15%; white-space: nowrap;">STATUS</th>
+                            <th style="width: 6%; white-space: nowrap; text-align: center;">HR NOTES</th>
+                            <th style="width: 10%; white-space: nowrap; text-align: center;">VIEW SCREENING</th>
+                            <th style="width: 10%; white-space: nowrap; text-align: right; padding-right: 20px;">ACTIONS</th>
                         </tr>
                     </thead>
                     <!-- Row 1 -->

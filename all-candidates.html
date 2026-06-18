@@ -196,6 +196,7 @@
                     </tr>
                 </thead>
                 <tbody id="candidateListBody">
+<<<<<<< HEAD
                     <tr class="candidate-row" data-name="Achyut Pancholi" data-dept="Engineering" data-subdept="Full Stack" data-stage="Video Screening Completed" data-status="Active" data-remarks="">
                         <td><span class="timestamp-txt">2026-06-08</span></td>
                         <td><strong>Achyut Pancholi</strong></td>
@@ -340,6 +341,10 @@
                             </select>
                         </td>
                     </tr>
+=======
+                    
+                    
+>>>>>>> b176ff6 (Added resume upload, parsing, Supabase integration and API connection)
                 </tbody>
             </table>
             <div id="noResults" class="empty-state" style="display: none;">No candidates found in this view context.</div>
@@ -375,6 +380,10 @@
                     <label for="resume">Upload Resume</label>
                     <input type="file" id="resume" class="form-control" accept=".pdf,.doc,.docx" required>
                 </div>
+<<<<<<< HEAD
+=======
+                <div id="uploadStatusMessage" class="upload-status-message"></div>
+>>>>>>> b176ff6 (Added resume upload, parsing, Supabase integration and API connection)
                 <div class="modal-actions">
                     <button type="button" class="btn-secondary" id="closeModalBtn">Cancel</button>
                     <button type="submit" class="btn-submit">Add Candidate</button>
@@ -455,6 +464,9 @@
 
         let currentIdCounter = 2;
         let activeRowForEmail = null;
+
+        const API_BASE_URL = "http://127.0.0.1:8000";
+
 
         const baselineFallbackDatabase = {
             "Operations|HR|Fresher(0)": ["Question 1", "Question 2", "Question 3", "Question 4", "Question 5"],
@@ -642,6 +654,7 @@
             }
         });
 
+
         candidateForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -702,6 +715,179 @@
             toggleModal(false);
             filterCandidates();
         });
+        candidateForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const dept = document.getElementById('department').value;
+            const subDept = document.getElementById('subDepartment').value;
+            const resumeFile = document.getElementById('resume').files[0];
+            const allowedExtensions = [
+                "pdf",
+                "doc",
+                "docx"
+            ];
+
+            const extension =
+                resumeFile.name
+                    .split('.')
+                    .pop()
+                    .toLowerCase();
+
+            if (!allowedExtensions.includes(extension)) {
+
+                uploadStatusMessage.className =
+                    "upload-status-message upload-error";
+
+                uploadStatusMessage.textContent =
+                    "Only PDF, DOC and DOCX files are allowed.";
+
+                return;
+            }
+
+            if (resumeFile.size > 5 * 1024 * 1024) {
+
+                uploadStatusMessage.className =
+                    "upload-status-message upload-error";
+
+                uploadStatusMessage.textContent =
+                    "Maximum file size is 5MB.";
+
+                return;
+            }
+
+            if (!resumeFile) {
+                alert("Please upload a resume");
+                return;
+            }
+
+            const candidateName = cleanNameFromFilename(resumeFile.name);
+
+            const formData = new FormData();
+
+            formData.append("name", candidateName);
+            formData.append("email", `${candidateName.replace(/\s+/g,'.').toLowerCase()}@example.com`);
+            formData.append("phone", "9999999999");
+            formData.append("department", dept);
+            formData.append("sub_department", subDept);
+            formData.append("resume", resumeFile);
+
+            try {
+
+                const response = await fetch(
+                    `${API_BASE_URL}/candidates/create-with-resume`,
+                    {
+                        method: "POST",
+                        body: formData
+                    }
+                );
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.detail || "Upload failed");
+                }
+
+                alert("Candidate added successfully!");
+
+                candidateForm.reset();
+
+                toggleModal(false);
+
+                loadCandidates();
+
+            } catch(error) {
+
+                console.error(error);
+
+                alert(error.message);
+            }
+        });
+        async function loadCandidates() {
+
+            try {
+
+                const response = await fetch(
+                    `${API_BASE_URL}/candidates`
+                );
+
+                const candidates = await response.json();
+
+                candidateListBody.innerHTML = "";
+
+                candidates.forEach(candidate => {
+
+                    const date = candidate.created_at
+                        ? candidate.created_at.split("T")[0]
+                        : new Date().toISOString().split("T")[0];
+
+                    const row = document.createElement("tr");
+
+                    row.className = "candidate-row";
+
+                    row.setAttribute(
+                        "data-name",
+                        candidate.name
+                    );
+
+                    row.setAttribute(
+                        "data-dept",
+                        candidate.department
+                    );
+
+                    row.setAttribute(
+                        "data-subdept",
+                        candidate.sub_department
+                    );
+
+                    row.innerHTML = `
+                        <td>
+                            <span class="timestamp-txt">
+                                ${date}
+                            </span>
+                        </td>
+
+                        <td>
+                            <strong>${candidate.name}</strong>
+                        </td>
+
+                        <td>
+                            ${candidate.sub_department}
+                        </td>
+
+                        <td>
+                            <span class="stage-tag screening">
+                                ${candidate.pipeline_stage}
+                            </span>
+                        </td>
+
+                        <td>
+                            <span class="resume-tag">
+                                📄 ${candidate.resume_filename || "N/A"}
+                            </span>
+                        </td>
+
+                        <td>
+                            ${candidate.status}
+                        </td>
+
+                        <td>
+                            Backend Connected
+                        </td>
+                    `;
+
+                    candidateListBody.appendChild(row);
+
+                });
+
+            } catch(error) {
+
+                console.error(error);
+
+                alert("Failed to load candidates");
+            }
+        }
+        loadCandidates();
+
 
         filterCandidates();
     </script>

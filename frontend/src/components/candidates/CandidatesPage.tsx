@@ -6,13 +6,16 @@ import { Toast } from '../ui/Toast';
 import type { Candidate } from '../../types/candidate';
 
 const NAV_ITEMS = [
-  { label: 'Hiring Queue',  href: 'hiring-queue.html?v=3' },
-  { label: 'All Candidates', href: 'all-candidates.html?v=3', active: true },
-  { label: 'Assessments',   href: 'assessments.html?v=3' },
-  { label: 'Reports',       href: 'reports.html?v=3' },
-  { label: 'Dashboard',     href: 'dashboard.html?v=3' },
-  { label: 'Departments',   href: 'departments.html?v=3' },
-  { label: 'Settings',      href: 'settings.html?v=3' },
+  // hiring-queue.html is served as a static file from publicDir (../Elasticrew-main)
+  // so /hiring-queue.html resolves correctly from the Vite dev server at localhost:5173
+  { label: 'Hiring Queue',   href: '/hiring-queue.html' },
+  // All Candidates is this React SPA — the root path
+  { label: 'All Candidates', href: '/', active: true },
+  { label: 'Assessments',    href: '/assessments.html' },
+  { label: 'Reports',        href: '/reports.html' },
+  { label: 'Dashboard',      href: '/dashboard.html' },
+  { label: 'Departments',    href: '/departments.html' },
+  { label: 'Settings',       href: '/settings.html' },
 ] as const;
 
 const STAGE_OPTIONS = [

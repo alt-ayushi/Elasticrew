@@ -298,13 +298,13 @@
             <h1 class="sidebar-brand">ElastiCrew</h1>
         </div>
         <ul class="nav-menu">
-            <li class="nav-menu-item active"><a href="hiring-queue.html?v=3"><span>Hiring Queue</span></a></li>
-            <li class="nav-menu-item"><a href="all-candidates.html?v=3"><span>All Candidates</span></a></li>
-            <li class="nav-menu-item"><a href="assessments.html?v=3"><span>Assessments</span></a></li>
-            <li class="nav-menu-item"><a href="reports.html?v=3"><span>Reports</span></a></li>
-            <li class="nav-menu-item"><a href="dashboard.html?v=3"><span>Dashboard</span></a></li>
-            <li class="nav-menu-item"><a href="departments.html?v=3"><span>Departments</span></a></li>
-            <li class="nav-menu-item"><a href="settings.html?v=3"><span>Settings</span></a></li>
+            <li class="nav-menu-item active"><a href="/hiring-queue.html"><span>Hiring Queue</span></a></li>
+            <li class="nav-menu-item"><a href="/"><span>All Candidates</span></a></li>
+            <li class="nav-menu-item"><a href="/assessments.html"><span>Assessments</span></a></li>
+            <li class="nav-menu-item"><a href="/reports.html"><span>Reports</span></a></li>
+            <li class="nav-menu-item"><a href="/dashboard.html"><span>Dashboard</span></a></li>
+            <li class="nav-menu-item"><a href="/departments.html"><span>Departments</span></a></li>
+            <li class="nav-menu-item"><a href="/settings.html"><span>Settings</span></a></li>
         </ul>
         <div class="logout-container"><a href="#" class="logout-link"><span>Logout</span></a></div>
     </nav>
@@ -377,11 +377,38 @@
                 transition: all 0.4s ease;
             }
 
+            /* Add Candidate — matches active pipeline-step style exactly */
+            .pipeline-step--add-candidate {
+                background: var(--primary-blue) !important;
+                color: #ffffff !important;
+                border: 1px solid transparent !important;
+                box-shadow: 0 6px 16px rgba(14, 45, 123, 0.3) !important;
+            }
+            .pipeline-step--add-candidate svg {
+                color: #ffffff !important;
+            }
+            .pipeline-step--add-candidate:hover {
+                background: #081a4a !important;
+                box-shadow: 0 8px 20px rgba(14, 45, 123, 0.45) !important;
+                transform: translateY(-2px);
+            }
+
 
         </style>
         <div class="pipeline-stepper">
+            <!-- Step 0: Add Candidate -->
+            <a href="/" class="pipeline-step pipeline-step--add-candidate">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <line x1="19" y1="8" x2="19" y2="14"></line>
+                    <line x1="16" y1="11" x2="22" y2="11"></line>
+                </svg>
+                <span>Add Candidate</span>
+            </a>
+            <div class="step-connector"></div>
             <!-- Step 1 -->
-            <a href="hiring-queue.html?v=3" class="pipeline-step active">
+            <a href="/hiring-queue.html" class="pipeline-step active">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M23 7l-7 5 7 5V7z"></path>
                     <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
@@ -398,7 +425,7 @@
             </a>
             <div class="step-connector "></div>
             <!-- Step 3 -->
-            <a href="tech-scheduler.html?v=3" class="pipeline-step ">
+            <a href="/tech-scheduler.html" class="pipeline-step ">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                 </svg>
